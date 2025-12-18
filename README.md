@@ -2,7 +2,7 @@
 
 ## Overview
 
-End‑to‑end ML example. Trains a decision tree classifier on the classic Iris dataset using scikit‑learn. Notebook contains exploratory data analysis and visualization. `src/train.py` contians a CLI tool that trains the model. `tests/test_train.py` contains tests for the training script.
+End‑to‑end ML example. Trains a decision tree classifier on the classic Iris dataset using scikit‑learn. Notebook in `notebooks/main-notebook.ipynb` contains exploratory data analysis and visualization. `src/train.py` contians a CLI tool that trains the model. `tests/test_train.py` contains tests for the training script.
 
 ## Quick start
 
