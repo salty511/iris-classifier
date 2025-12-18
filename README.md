@@ -11,7 +11,7 @@ End‑to‑end ML example. Trains a decision tree classifier on the classic Iris
 ```bash
 git clone https://github.com/salty511/iris-classifier.git
 cd iris-classifier
-python -m venv .venv && source venv/bin/activate
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python src/train.py
 ```
