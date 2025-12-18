@@ -35,6 +35,7 @@ def print_metrics(y_test, y_pred, model, feature_names):
 	from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay, classification_report
 	import matplotlib.pyplot as plt
 	from sklearn.tree import plot_tree
+	import os
 
 	accuracy = accuracy_score(y_test, y_pred)
 	print("Accuracy: ", accuracy)
@@ -45,6 +46,10 @@ def print_metrics(y_test, y_pred, model, feature_names):
 	confusion = confusion_matrix(y_test, y_pred)
 	disp = ConfusionMatrixDisplay(confusion)
 	disp.plot()
+
+	if not os.path.exists("outputs"):
+		os.makedirs("outputs")
+		
 	plt.savefig("outputs/confusion_matrix.png")
 
 	print("Feature importances:")
