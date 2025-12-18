@@ -11,15 +11,15 @@ End‑to‑end ML example. Trains a decision tree classifier on the classic Iris
 ```bash
 git clone https://github.com/salty511/iris-classifier.git
 cd iris-classifier
-python -m venv .venv && source .venv/bin/activate
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python src/train.py
+python3 src/train.py
 ```
 
 ## Usage
 
 ```bash
-python src/train.py --help
+python3 src/train.py --help
 ```
 
 Shows the command line options for training a model. The default values are:
@@ -28,7 +28,7 @@ Shows the command line options for training a model. The default values are:
 --random-state 42
 
 ```bash
-python src/train.py
+python3 src/train.py
 ```
 
 Trains a decision tree classifier on the Iris dataset and saves the confusion martrix figure to `outputs/confusion_matrix.png`.
@@ -36,7 +36,7 @@ Trains a decision tree classifier on the Iris dataset and saves the confusion ma
 ## Testing
 
 ```bash
-python -m pytest
+python3 -m pytest
 ```
 
 Runs all tests in the `tests` directory. test_train.py uses parameterized tests to test multiple values for test_size, asserting that the accuracy is greater than 95%.
