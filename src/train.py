@@ -2,6 +2,8 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 import argparse
+import os
+import joblib
 
 def train_model(dataset, test_size=0.2, random_state=42):
 	"""Train a Decision Tree classifier on the Iris dataset.
@@ -35,7 +37,6 @@ def print_metrics(y_test, y_pred, model, feature_names):
 	from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay, classification_report
 	import matplotlib.pyplot as plt
 	from sklearn.tree import plot_tree
-	import os
 
 	accuracy = accuracy_score(y_test, y_pred)
 	print("Accuracy: ", accuracy)
@@ -44,13 +45,15 @@ def print_metrics(y_test, y_pred, model, feature_names):
 	print(report)
 
 	confusion = confusion_matrix(y_test, y_pred)
+	
+	plt.figure(figsize=(10, 10))
 	disp = ConfusionMatrixDisplay(confusion)
 	disp.plot()
-
-	if not os.path.exists("outputs"):
-		os.makedirs("outputs")
-		
 	plt.savefig("outputs/confusion_matrix.png")
+
+	plt.figure(figsize=(10, 10))
+	plot_tree(model)
+	plt.savefig("outputs/tree.png")
 
 	print("Feature importances:")
 	for i in range(len(model.feature_importances_)):
@@ -68,6 +71,10 @@ if __name__ == '__main__':
 	                    help='Random state for reproducibility (default: 42)')
 	args = parser.parse_args()
 
+	# Create the output directory if it doesn't exist
+	if not os.path.exists("outputs"):
+		os.makedirs("outputs")
+
 	# Load the Iris dataset
 	iris = load_iris()
 
@@ -77,6 +84,9 @@ if __name__ == '__main__':
 		test_size=args.test_size,
 		random_state=args.random_state
 	)
+
+	# Save the model to disk
+	joblib.dump(model, "outputs/model.joblib")
 	
 	# Print the metrics
 	print_metrics(y_test, y_pred, model, iris.feature_names)
